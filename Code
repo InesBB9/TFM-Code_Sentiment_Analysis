@@ -1,0 +1,14 @@
+#First, we install the library and import the pipiline function
+from transformers import pipeline
+
+#We create a sentiment analysis (SA) pipeline variable 
+classifier = pipeline(task="sentiment-analysis")
+
+#Here we introduce the text we want to perform the SA on
+preds = classifier("Mujer que se presta sin problema a mantener relaciones sexuales")
+
+#Now, we process the results to adjust them to the formats of "score" and "label"
+preds = [{"score": round(pred["score"], 4), "label": pred["label"]} for pred in preds]
+
+#We print the processed predictions 
+preds
